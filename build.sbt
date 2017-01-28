@@ -3,6 +3,7 @@ val coreSettings = Seq(
   sonatypeProfileName := "com.github.j5ik2o",
   organization := "com.github.j5ik2o",
   scalaVersion := "2.11.8",
+  crossScalaVersions := Seq("2.10.5", "2.11.8", "2.12.0"),
   scalacOptions ++= Seq(
     "-feature"
     , "-deprecation"
@@ -14,15 +15,12 @@ val coreSettings = Seq(
     , "-language:implicitConversions"
     , "-language:postfixOps"
     , "-language:higherKinds"
-    , "-Yinline-warnings" // Emit inlining warnings. (Normally surpressed due to high volume)
     , "-Ywarn-adapted-args" // Warn if an argument list is modified to match the receiver
     , "-Ywarn-dead-code" // Warn when dead code is identified.
     , "-Ywarn-inaccessible" // Warn about inaccessible types in method signatures.
-    , "-Ywarn-infer-any" // Warn when a type argument is inferred to be `Any`.
     , "-Ywarn-nullary-override" // Warn when non-nullary `def f()' overrides nullary `def f'
     , "-Ywarn-nullary-unit" // Warn when nullary methods return Unit.
     , "-Ywarn-numeric-widen" // Warn when numerics are widened.
-    , "-Ywarn-unused" // Warn when local and private vals, vars, defs, and types are are unused.
     , "-Xmax-classfile-name", "200"
   ),
   publishMavenStyle := true,

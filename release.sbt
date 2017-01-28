@@ -18,7 +18,7 @@ def updateReadmeFile(version: String, readme: String): Unit = {
 }
 
 
-val updateReadme = { state: State =>
+val updateReadme: (State) => State = { state: State =>
   val extracted = Project.extract(state)
   val git = new Git(extracted get baseDirectory)
   val scalaV = extracted get scalaBinaryVersion
@@ -55,7 +55,8 @@ releaseProcess := Seq[ReleaseStep](
     action = { state =>
       val extracted = Project extract state
       extracted.runAggregated(PgpKeys.publishSigned in Global in extracted.get(thisProjectRef), state)
-    }
+    },
+    enableCrossBuild = true
   ),
   setNextVersion,
   commitNextVersion,
