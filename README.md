@@ -1,6 +1,6 @@
 # sw4jj
 
-Simple scala Wrapper For [Java-Jwt](/auth0/java-jwt) is sw4jj.
+Simple scala Wrapper For [Java-Jwt](https://github.com/auth0/java-jwt) is sw4jj.
 
 
 ## Installation
