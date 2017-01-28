@@ -1,6 +1,6 @@
 # sw4jj
 
-Simple scala Wrapper For Java-Jwt is sw4jj
+Simple scala Wrapper For [Java-Jwt](/auth0/java-jwt) is sw4jj.
 
 
 ## Installation
@@ -25,7 +25,7 @@ libraryDependencies += "com.github.j5ik2o" %% "sw4jj" % "1.0.2-SNAPSHOT"
 
 ## Usage
 
-Please import `com.github.j5ik2o.jwt.Implicits._`.
+Please import `com.github.j5ik2o.sw4jj.Implicits._`.
 You can Scala methods added to java-jwt (Header, Playload, Claim).
 
 ```scala
