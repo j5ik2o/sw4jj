@@ -30,7 +30,7 @@ You can Scala methods added to java-jwt (Header, Playload, Claim).
 
 ```scala
 import com.auth0.jwt.JWT
-import com.github.j5ik2o.jwt.Implicits._
+import com.github.j5ik2o.sw4jj.Implicits._
 
 val verifier = JWT.require(Algorithm.HMAC256("secret"))
   .withIssuer("auth0")

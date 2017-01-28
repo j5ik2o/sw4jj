@@ -1,4 +1,4 @@
-package com.github.j5ik2o.jwt
+package com.github.j5ik2o.sw4jj
 
 import com.auth0.jwt.interfaces.{ Claim, Header }
 
