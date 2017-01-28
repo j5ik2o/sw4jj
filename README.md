@@ -26,10 +26,10 @@ libraryDependencies += "com.github.j5ik2o" %% "sw4jj" % "1.0.0-SNAPSHOT"
 ## Usage
 
 Please import `com.github.j5ik2o.jwt.Implicits._`.
-You can use Scala methods of Header, Payload, Claim.
-
+You can Scala methods added to java-jwt (Header, Playload, Claim).
 
 ```scala
+import com.auth0.jwt.JWT
 import com.github.j5ik2o.jwt.Implicits._
 
 val verifier = JWT.require(Algorithm.HMAC256("secret"))
