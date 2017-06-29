@@ -8,6 +8,8 @@ import scala.collection.JavaConverters._
 
 class RichPayload(val underlying: Payload) extends AnyVal with PimpedType[Payload] {
 
+  def getIssuerAsScala: Option[String] = Option(underlying.getIssuer)
+
   def getSubjectAsScala: Option[String] = Option(underlying.getSubject)
 
   def getAudienceAsScala: Seq[String] = Option(underlying.getAudience).fold(Seq.empty[String])(_.asScala)
