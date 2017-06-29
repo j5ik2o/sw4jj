@@ -2,7 +2,7 @@ package com.github.j5ik2o.jwt
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import com.github.j5ik2o.jwt.Implicits._
+import com.github.j5ik2o.sw4jj.Implicits._
 import org.scalatest.{ FunSpec, Matchers }
 
 class JWTSpec extends FunSpec with Matchers {
