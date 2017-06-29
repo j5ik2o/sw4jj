@@ -12,7 +12,7 @@ Add the following to your sbt build (Scala 2.10.x, 2.11.x, 2.12.x):
 ```scala
 resolvers += "Sonatype OSS Release Repository" at "https://oss.sonatype.org/content/repositories/releases/"
 
-libraryDependencies += "com.github.j5ik2o" %% "sw4jj" % "1.0.1"
+libraryDependencies += "com.github.j5ik2o" %% "sw4jj" % "1.0.2"
 ```
 
 ### Snapshot Version
