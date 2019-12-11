@@ -62,7 +62,7 @@ val root = (project in file("."))
   .settings(
     libraryDependencies ++= Seq(
       "com.auth0" % "java-jwt" % "3.1.0",
-      "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.8" % "test"
     )
   )
 
