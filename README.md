@@ -1,7 +1,11 @@
 # sw4jj
 
-Simple scala Wrapper For [Java-Jwt](https://github.com/auth0/java-jwt) is sw4jj.
 
+[![CircleCI](https://circleci.com/gh/j5ik2o/sw4jj/tree/main.svg?style=shield&circle-token=9f6f53d09f0fb87ee8ea81246e69683d668291cd)](https://circleci.com/gh/j5ik2o/sw4jj/tree/main)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/sw4jj_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/sw4jj_2.13)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+Simple scala Wrapper For [Java-Jwt](https://github.com/auth0/java-jwt) is sw4jj.
 
 ## Installation
 
