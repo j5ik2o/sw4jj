@@ -2,27 +2,32 @@ name: CI
 on:
   push:
     branches: [ main ]
-    tags: v[1-9]+.[0-9]+.[0-9]+
+    tags:
+      - v[1-9]+.[0-9]+.[0-9]+
   pull_request:
     branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
       JVM_OPTS:  -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Scala
-      uses: olafurpg/setup-scala@v10
+    - uses: actions/checkout@v2.3.4
+    - uses: olafurpg/setup-scala@v10
       with:
         java-version: "adopt@1.8"
-    - name: Coursier cache
-      uses: coursier/cache-action@v5
-    - name: Build and test
-      run: |
-        sbt -v clean scalafmtCheckAll test
+    - uses: coursier/cache-action@v5
+    - uses: olafurpg/setup-gpg@v3
+    - run: sbt -v scalafmtCheckAll +test
+    - run: sbt -v ci-release
+      env:
+        PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
+        PGP_SECRET: ${{ secrets.PGP_SECRET }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+    - run: |
         rm -rf "$HOME/.ivy2/local" || true
         find $HOME/Library/Caches/Coursier/v1        -name "ivydata-*.properties" -delete || true
         find $HOME/.ivy2/cache                       -name "ivydata-*.properties" -delete || true
