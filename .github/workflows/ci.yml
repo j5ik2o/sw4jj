@@ -17,8 +17,10 @@ jobs:
         java-version: "adopt@1.8"
     - uses: coursier/cache-action@v5
     - run: sbt -v scalafmtCheckAll
+    - run: sbt -v +compile
     - run: sbt -v +test
-    - run: |
+    - name: clean up
+      run: |
         rm -rf "$HOME/.ivy2/local" || true
         find $HOME/Library/Caches/Coursier/v1        -name "ivydata-*.properties" -delete || true
         find $HOME/.ivy2/cache                       -name "ivydata-*.properties" -delete || true
