@@ -34,29 +34,8 @@ jobs:
           command: git fetch --tags
       - run:
           command: sbt ci-release
-  tagging:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run:
-          command: git fetch --tags
-      - run:
-          command: |
-            git clone https://github.com/markchalloner/git-semver.git | sudo git-semver/install.sh
-            git semver patch
-            git push origin $(git semver get)
 workflows:
   version: 2
-  tagging:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only: main
-    jobs:
-      - build
   build-and-release:
     jobs:
       - build:
