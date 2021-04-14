@@ -2,10 +2,11 @@ name: Release
 on:
   workflow_run:
     workflows: ["CI"]
-    types: [completed]
-  push:
     branches: [main]
-    tags: ["*"]
+    types: [completed]
+#  push:
+#    branches: [main]
+#    tags: ["*"]
 jobs:
   publish:
     runs-on: ubuntu-20.04
