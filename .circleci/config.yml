@@ -44,7 +44,8 @@ jobs:
       - run:
           command: |
             git clone https://github.com/markchalloner/git-semver.git | sudo git-semver/install.sh
-            git semver get
+            git semver patch
+            git push origin $(git semver get)
 workflows:
   version: 2
   tagging:
