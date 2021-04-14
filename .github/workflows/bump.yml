@@ -12,7 +12,8 @@ jobs:
         fetch-depth: '0'
     - run: |
         git clone https://github.com/markchalloner/git-semver.git && sudo git-semver/install.sh
-        echo $(git semver get)
+        git semver patch
+        git push origin $(git semver get)
 #    - name: Bump version and push tag
 #      uses: anothrNick/github-tag-action@1.26.0
 #      env:
