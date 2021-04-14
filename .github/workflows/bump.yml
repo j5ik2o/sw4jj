@@ -7,7 +7,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.42
+    - uses: actions/checkout@v2.3.4
     - run: |
         mkdir -p /tmp
         git clone https://github.com/markchalloner/git-semver.git /tmp && sudo /tmp/git-semver/install.sh
