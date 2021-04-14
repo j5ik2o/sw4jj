@@ -25,7 +25,7 @@ jobs:
           key: scala-library-dependencies-{{ checksum "build.sbt" }}
   release:
     docker:
-      - image: adoptopenjdk:8-jdk-hotspot
+      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - restore_cache:
