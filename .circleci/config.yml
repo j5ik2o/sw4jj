@@ -24,6 +24,8 @@ jobs:
       - restore_cache:
           key: scala-library-dependencies-{{ checksum "build.sbt" }}
       - run:
+          command: git fetch --tags
+      - run:
           command: |
             sbt clean ++"2.13.5" test scalafmtCheck
           no_output_timeout: 1h
