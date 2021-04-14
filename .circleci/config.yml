@@ -55,7 +55,7 @@ workflows:
             branches:
               only: main
     jobs:
-      - build:
+      - build
   build-and-release:
     jobs:
       - build:
