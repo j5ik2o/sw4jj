@@ -7,41 +7,18 @@ def crossScalacOptions(scalaVersion: String): Seq[String] = CrossVersion.partial
     Seq("-Yinline-warnings")
 }
 
-lazy val deploySettings = Seq(
-// sonatypeProfileName := "com.github.j5ik2o",
-//  publishMavenStyle := true,
-  Test / publishArtifact := false,
-  pomIncludeRepository := { _ => false },
-  pomExtra := {
-    <url>https://github.com/j5ik2o/sw4jj</url>
-      <licenses>
-        <license>
-          <name>The MIT License</name>
-          <url>http://opensource.org/licenses/MIT</url>
-        </license>
-      </licenses>
-      <scm>
-        <url>git@github.com:j5ik2o/sw4jj.git</url>
-        <connection>scm:git:github.com/j5ik2o/sw4jj</connection>
-        <developerConnection>scm:git:git@github.com:j5ik2o/sw4jj.git</developerConnection>
-      </scm>
-      <developers>
-        <developer>
-          <id>j5ik2o</id>
-          <name>Junichi Kato</name>
-        </developer>
-      </developers>
-  },
-//  publishTo := sonatypePublishToBundle.value,
-//  credentials := {
-//    val ivyCredentials = (LocalRootProject / baseDirectory).value / ".credentials"
-//    val gpgCredentials = (LocalRootProject / baseDirectory).value / ".gpgCredentials"
-//    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
-//  }
-)
-
 lazy val baseSettings = Seq(
   organization := "com.github.j5ik2o",
+  homepage := Some(url("https://github.com/j5ik2o/sw4jj")),
+  licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
+  developers := List(
+      Developer(
+        id = "j5ik2o",
+        name = "Junichi Kato",
+        email = "j5ik2o@gmail.com",
+        url = url("https://blog.j5ik2o.me")
+      )
+    ),
   scalaVersion := Versions.scala211Version,
   crossScalaVersions := Seq(Versions.scala211Version, Versions.scala212Version, Versions.scala213Version),
   scalacOptions ++= (Seq(
@@ -62,13 +39,14 @@ lazy val baseSettings = Seq(
   libraryDependencies ++= Seq(
       scalatest.scalatest % Test
     ),
+  Test / publishArtifact := false,
   Test / fork := true,
   Test / parallelExecution := false,
   ThisBuild / scalafmtOnCompile := true
 )
 
 val `sw4jj-root` = (project in file("."))
-  .settings(baseSettings, deploySettings)
+  .settings(baseSettings)
   .settings(
     name := "sw4jj",
     libraryDependencies ++= Seq(
