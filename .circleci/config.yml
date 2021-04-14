@@ -50,7 +50,7 @@ workflows:
   tagging:
     triggers:
       - schedule:
-          cron: "*/3 * * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only: main
