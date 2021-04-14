@@ -1,10 +1,9 @@
 package com.github.j5ik2o.sw4jj
 
 import java.util.Date
-
 import com.auth0.jwt.interfaces.{ Claim, Payload }
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 class RichPayload(val underlying: Payload) extends AnyVal with PimpedType[Payload] {
 
@@ -12,7 +11,7 @@ class RichPayload(val underlying: Payload) extends AnyVal with PimpedType[Payloa
 
   def getSubjectAsScala: Option[String] = Option(underlying.getSubject)
 
-  def getAudienceAsScala: Seq[String] = Option(underlying.getAudience).fold(Seq.empty[String])(_.asScala)
+  def getAudienceAsScala: Seq[String] = Option(underlying.getAudience).fold(Seq.empty[String])(_.asScala.toSeq)
 
   def getExpiresAtAsScala: Option[Date] = Option(underlying.getExpiresAt)
 

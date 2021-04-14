@@ -1,33 +1,17 @@
+import Dependencies._
 
-val coreSettings = Seq(
+def crossScalacOptions(scalaVersion: String): Seq[String] = CrossVersion.partialVersion(scalaVersion) match {
+  case Some((2L, scalaMajor)) if scalaMajor >= 12 =>
+    Seq.empty
+  case Some((2L, scalaMajor)) if scalaMajor <= 11 =>
+    Seq("-Yinline-warnings")
+}
+
+lazy val deploySettings = Seq(
   sonatypeProfileName := "com.github.j5ik2o",
-  organization := "com.github.j5ik2o",
-  scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.10.5", "2.11.8", "2.12.0"),
-  scalacOptions ++= Seq(
-    "-feature"
-    , "-deprecation"
-    , "-unchecked"
-    , "-encoding"
-    , "UTF-8"
-    , "-Xfatal-warnings"
-    , "-language:existentials"
-    , "-language:implicitConversions"
-    , "-language:postfixOps"
-    , "-language:higherKinds"
-    , "-Ywarn-adapted-args" // Warn if an argument list is modified to match the receiver
-    , "-Ywarn-dead-code" // Warn when dead code is identified.
-    , "-Ywarn-inaccessible" // Warn about inaccessible types in method signatures.
-    , "-Ywarn-nullary-override" // Warn when non-nullary `def f()' overrides nullary `def f'
-    , "-Ywarn-nullary-unit" // Warn when nullary methods return Unit.
-    , "-Ywarn-numeric-widen" // Warn when numerics are widened.
-    , "-Xmax-classfile-name", "200"
-  ),
   publishMavenStyle := true,
-  publishArtifact in Test := false,
-  pomIncludeRepository := {
-    _ => false
-  },
+  Test / publishArtifact := false,
+  pomIncludeRepository := { _ => false },
   pomExtra := {
     <url>https://github.com/j5ik2o/sw4jj</url>
       <licenses>
@@ -48,21 +32,58 @@ val coreSettings = Seq(
         </developer>
       </developers>
   },
-  credentials := Def.task {
-    val ivyCredentials = (baseDirectory in LocalRootProject).value / ".credentials"
-    val result = Credentials(ivyCredentials) :: Nil
-    result
-  }.value
-) ++ scalariformSettings
+  publishTo := sonatypePublishToBundle.value,
+  credentials := {
+    val ivyCredentials = (LocalRootProject / baseDirectory).value / ".credentials"
+    val gpgCredentials = (LocalRootProject / baseDirectory).value / ".gpgCredentials"
+    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
+  }
+)
 
-val root = (project in file("."))
+
+lazy val baseSettings = Seq(
+  organization := "com.github.j5ik2o",
+  scalaVersion := Versions.scala211Version,
+  crossScalaVersions := Seq(Versions.scala211Version, Versions.scala212Version, Versions.scala213Version),
+  scalacOptions ++= (Seq(
+      "-feature",
+      "-deprecation",
+      "-unchecked",
+      "-encoding",
+      "UTF-8",
+      "-language:_",
+      "-Ydelambdafy:method",
+      "-target:jvm-1.8"
+    ) ++ crossScalacOptions(scalaVersion.value)),
+  resolvers ++= Seq(
+      Resolver.sonatypeRepo("snapshots"),
+      Resolver.sonatypeRepo("releases"),
+      "Seasar Repository" at "https://maven.seasar.org/maven2/"
+    ),
+  libraryDependencies ++= Seq(
+      scalatest.scalatest % Test
+    ),
+  Test / fork := true,
+  Test / parallelExecution := false,
+  ThisBuild / scalafmtOnCompile := true
+)
+
+val `sw4jj-root` = (project in file("."))
+  .settings(baseSettings, deploySettings)
   .settings(
-    name := "sw4jj"
-  ).settings(coreSettings)
-  .settings(
+    name := "sw4jj",
     libraryDependencies ++= Seq(
       "com.auth0" % "java-jwt" % "3.1.0",
       "org.scalatest" %% "scalatest" % "3.0.9" % "test"
-    )
+    ),
+libraryDependencies ++= {
+      CrossVersion.partialVersion(scalaVersion.value) match {
+        case Some((2L, scalaMajor)) if scalaMajor == 13 =>
+          Seq.empty
+        case Some((2L, scalaMajor)) if scalaMajor <= 12 =>
+          Seq(
+            scalaLang.scalaCollectionCompat
+          )
+      }
+    }
   )
-

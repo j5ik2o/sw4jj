@@ -1,6 +1,6 @@
 package com.github.j5ik2o.sw4jj
 
-import com.auth0.jwt.interfaces.{ Claim, Header }
+import com.auth0.jwt.interfaces.Header
 
 class RichHeader(val underlying: Header) extends AnyVal with PimpedType[Header] {
 
