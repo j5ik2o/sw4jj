@@ -40,7 +40,6 @@ lazy val deploySettings = Seq(
   }
 )
 
-
 lazy val baseSettings = Seq(
   organization := "com.github.j5ik2o",
   scalaVersion := Versions.scala211Version,
@@ -73,10 +72,9 @@ val `sw4jj-root` = (project in file("."))
   .settings(
     name := "sw4jj",
     libraryDependencies ++= Seq(
-      "com.auth0" % "java-jwt" % "3.1.0",
-      "org.scalatest" %% "scalatest" % "3.0.9" % "test"
-    ),
-libraryDependencies ++= {
+        auth0.javaJwt
+      ),
+    libraryDependencies ++= {
       CrossVersion.partialVersion(scalaVersion.value) match {
         case Some((2L, scalaMajor)) if scalaMajor == 13 =>
           Seq.empty
