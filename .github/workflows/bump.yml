@@ -9,7 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - run: |
-        git clone https://github.com/markchalloner/git-semver.git /tmp && sudo /tmp/git-semver/install.sh
+        git status
+        git clone https://github.com/markchalloner/git-semver.git && sudo git-semver/install.sh
         git semver patch
         git push origin $(git semver get)
 #    - name: Bump version and push tag
