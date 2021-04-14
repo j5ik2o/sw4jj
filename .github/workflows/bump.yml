@@ -11,6 +11,8 @@ jobs:
     - run: |
         git status
         git clone https://github.com/markchalloner/git-semver.git && sudo git-semver/install.sh
+        mkdir -p $HOME/.git-semver
+        echo "VERSION_PREFIX=v" > $HOME/.git-semver/config
         git semver patch
         git push origin $(git semver get)
 #    - name: Bump version and push tag
