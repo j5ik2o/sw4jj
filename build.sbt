@@ -8,8 +8,8 @@ def crossScalacOptions(scalaVersion: String): Seq[String] = CrossVersion.partial
 }
 
 lazy val deploySettings = Seq(
-  sonatypeProfileName := "com.github.j5ik2o",
-  publishMavenStyle := true,
+// sonatypeProfileName := "com.github.j5ik2o",
+//  publishMavenStyle := true,
   Test / publishArtifact := false,
   pomIncludeRepository := { _ => false },
   pomExtra := {
@@ -32,12 +32,12 @@ lazy val deploySettings = Seq(
         </developer>
       </developers>
   },
-  publishTo := sonatypePublishToBundle.value,
-  credentials := {
-    val ivyCredentials = (LocalRootProject / baseDirectory).value / ".credentials"
-    val gpgCredentials = (LocalRootProject / baseDirectory).value / ".gpgCredentials"
-    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
-  }
+//  publishTo := sonatypePublishToBundle.value,
+//  credentials := {
+//    val ivyCredentials = (LocalRootProject / baseDirectory).value / ".credentials"
+//    val gpgCredentials = (LocalRootProject / baseDirectory).value / ".gpgCredentials"
+//    Credentials(ivyCredentials) :: Credentials(gpgCredentials) :: Nil
+//  }
 )
 
 lazy val baseSettings = Seq(
