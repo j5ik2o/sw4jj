@@ -29,11 +29,8 @@ jobs:
           command: |
             sbt clean ++"2.13.5" test scalafmtCheck
           no_output_timeout: 1h
-      - when:
-          condition:
-            equal: [ main, <<pipeline.git.branch>> ]
-          steps:
-            - run: sbt ci-release
+      - run:
+          command: sbt ci-release
       - save_cache:
           paths: [ "~/.sbt/boot", "~/.ivy2/cache", "~/.cache/coursier",  "~/.wixMySQL" ]
           key: scala-library-dependencies-{{ checksum "build.sbt" }}
