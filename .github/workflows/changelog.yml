@@ -19,6 +19,8 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           output-file: "CHANGELOG.md"
+          git-user-name: j5ik2o
+          git-user-email: j5ik2o@gmail.com
           git-message: 'chore(release): {version}'
           preset: 'angular'
           tag-prefix: 'v'
