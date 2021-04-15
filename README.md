@@ -1,7 +1,7 @@
 # sw4jj
 
-
-[![CircleCI](https://circleci.com/gh/j5ik2o/sw4jj/tree/main.svg?style=shield&circle-token=9f6f53d09f0fb87ee8ea81246e69683d668291cd)](https://circleci.com/gh/j5ik2o/sw4jj/tree/main)
+[![Scala CI](https://github.com/j5ik2o/sw4jj/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/j5ik2o/sw4jj/actions/workflows/ci.yml)
+[![Mergify Status](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/j5ik2o/sw4jj&style=flat)](https://mergify.io)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/sw4jj_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.j5ik2o/sw4jj_2.13)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
