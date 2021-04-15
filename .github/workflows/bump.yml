@@ -12,44 +12,44 @@ jobs:
         fetch-depth: 0
         persist-credentials: false
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: git setting
-      run: |
-        git config --local user.email "j5ik2o@gmail.com"
-        git config --local user.name "j5ik2o"
-    - name: git current version
-      id: current-version
-      run: |
-        VER=$(git describe --abbrev=0)
-        echo "VER=${VER}"
-        echo "::set-output name=value::${VER}"
-    - name: next version
-      uses: j5ik2o/semver-control-action@v1.0.3
-      id: get-next-version
-      with:
-        current-version: ${{ steps.current-version.outputs.value }}
-    - name: git tag and push
-      run: |
-        echo "version = ${{ steps.get-next-version.outputs.version }}"
-        git tag v${{ steps.get-next-version.outputs.version }} -m "v${{ steps.get-next-version.outputs.version }}"
-        git push origin v${{ steps.get-next-version.outputs.version }}
-    - name: Create a GitHub release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ steps.get-next-version.outputs.version }}
-        release_name: Release v${{ steps.get-next-version.outputs.version }}
-        body: v${{ steps.get-next-version.outputs.version }}
-#    - name: Bump version and push tag
-#      id: tag_version
-#      uses: mathieudutour/github-tag-action@v5.4
+#    - name: git setting
+#      run: |
+#        git config --local user.email "j5ik2o@gmail.com"
+#        git config --local user.name "j5ik2o"
+#    - name: git current version
+#      id: current-version
+#      run: |
+#        VER=$(git describe --abbrev=0)
+#        echo "VER=${VER}"
+#        echo "::set-output name=value::${VER}"
+#    - name: next version
+#      uses: j5ik2o/semver-control-action@v1.0.3
+#      id: get-next-version
 #      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        current-version: ${{ steps.current-version.outputs.value }}
+#    - name: git tag and push
+#      run: |
+#        echo "version = ${{ steps.get-next-version.outputs.version }}"
+#        git tag v${{ steps.get-next-version.outputs.version }} -m "v${{ steps.get-next-version.outputs.version }}"
+#        git push origin v${{ steps.get-next-version.outputs.version }}
 #    - name: Create a GitHub release
 #      uses: actions/create-release@v1
 #      env:
 #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      with:
-#        tag_name: ${{ steps.tag_version.outputs.new_tag }}
-#        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-#        body: ${{ steps.tag_version.outputs.changelog }}
+#        tag_name: v${{ steps.get-next-version.outputs.version }}
+#        release_name: Release v${{ steps.get-next-version.outputs.version }}
+#        body: v${{ steps.get-next-version.outputs.version }}
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v5.4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create a GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag_version.outputs.new_tag }}
+        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+        body: ${{ steps.tag_version.outputs.changelog }}
