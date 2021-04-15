@@ -1,0 +1,19 @@
+{
+  "name": "sw4jj",
+  "version": "1.0.15",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j5ik2o/sw4jj.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j5ik2o/sw4jj/issues"
+  },
+  "homepage": "https://github.com/j5ik2o/sw4jj#readme"
+}
