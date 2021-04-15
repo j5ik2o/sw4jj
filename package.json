@@ -14,5 +14,6 @@
   "bugs": {
     "url": "https://github.com/j5ik2o/sw4jj/issues"
   },
-  "homepage": "https://github.com/j5ik2o/sw4jj#readme"
+  "homepage": "https://github.com/j5ik2o/sw4jj#readme",
+  "version": "0.1.0"
 }
