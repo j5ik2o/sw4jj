@@ -19,4 +19,8 @@ jobs:
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           output-file: "CHANGELOG.md"
+          git-message: 'chore(release): {version}'
+          preset: 'angular'
+          tag-prefix: 'v'
           skip-on-empty: true
+          version-file: 'package.json, package-lock.json'
