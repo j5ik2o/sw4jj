@@ -2,7 +2,7 @@ name: Bump Version
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '30 * * * *'
+    - cron:  '*/10 * * * *'
 jobs:
   bump-version:
     runs-on: ubuntu-20.04
