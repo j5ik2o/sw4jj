@@ -31,11 +31,6 @@ lazy val baseSettings = Seq(
       "-Ydelambdafy:method",
       "-target:jvm-1.8"
     ) ++ crossScalacOptions(scalaVersion.value)),
-  resolvers ++= Seq(
-      Resolver.sonatypeRepo("snapshots"),
-      Resolver.sonatypeRepo("releases"),
-      "Seasar Repository" at "https://maven.seasar.org/maven2/"
-    ),
   libraryDependencies ++= Seq(
       scalatest.scalatest % Test
     ),
