@@ -21,7 +21,7 @@ jobs:
         echo "VER=${VER}"
         echo "::set-output name=value::${VER}"
     - name: next version
-      uses: j5ik2o/git-semver-control-action
+      uses: j5ik2o/semver-control-action
       id: get-next-version
       with:
         current-version: ${{ steps.current-version.outputs.value }}
