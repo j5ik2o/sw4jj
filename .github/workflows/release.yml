@@ -41,7 +41,7 @@ jobs:
         fetch-depth: 0
     - uses: olafurpg/setup-scala@v10
       with:
-        java-version: ${{ matrix.jdk }}
+        java-version: "adopt@1.8"
     - uses: coursier/cache-action@v5
     - uses: olafurpg/setup-gpg@v3
     - run: sbt -v ci-release
