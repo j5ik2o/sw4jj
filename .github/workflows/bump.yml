@@ -34,8 +34,9 @@ jobs:
         npm version ${{ steps.tag_version.outputs.new_tag }}
         cat ./package.json
         conventional-changelog -p angular -i CHANGELOG.md -s
-        git add .
+        git add package.json
         git commit package.json -m 'Bump version in package.json'
+        git add CHANGELOG.md
         git commit CHANGELOG.md -m 'Update CHANGELOG.md' || true
     - name: Push changes
       uses: ad-m/github-push-action@master
