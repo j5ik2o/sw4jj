@@ -1,8 +1,9 @@
-## [0.1.1](https://github.com/j5ik2o/sw4jj/compare/v0.1.0...v0.1.1) (2021-04-16)
+## [0.1.5](https://github.com/j5ik2o/sw4jj/compare/v0.1.0...v0.1.5) (2021-04-16)
 
 
 ### Bug Fixes
 
+* package.json ([e7be8e8](https://github.com/j5ik2o/sw4jj/commit/e7be8e8a846301131152241acf99ab717f50d41c))
 * package.json ([c704a2f](https://github.com/j5ik2o/sw4jj/commit/c704a2f4f4cd80c347a122cb2322e976dfac9c1e))
 
 
