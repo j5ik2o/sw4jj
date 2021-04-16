@@ -25,17 +25,16 @@ jobs:
       with:
         node-version: '14'
         check-latest: true
+    - name: Update CHANGELOG
+      run: |
+        npm install -g conventional-changelog-cli
     - name: Bump version in package.json
       run: |
         cat ./package.json
         npm version ${{ steps.tag_version.outputs.new_tag }}
         cat ./package.json
         git add .
-        git commit -m 'Bump version in package.json'
-    - name: Update CHANGELOG
-      run: |
-        npm install -g conventional-changelog-cli
-        conventional-changelog -p angular -i CHANGELOG.md -s
+        git commit package.json -m 'Bump version in package.json'
         git commit CHANGELOG.md -m 'Update CHANGELOG.md' -a || true
     - name: Push changes
       uses: ad-m/github-push-action@master
