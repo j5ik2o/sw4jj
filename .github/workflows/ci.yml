@@ -50,12 +50,7 @@ jobs:
           java-version: ${{ matrix.jdk }}
       - uses: coursier/cache-action@v5
       - uses: olafurpg/setup-gpg@v3
-      - run: sbt -v coverage
       - run: sbt -v ++${{ matrix.scala }} test
-      - run: sbt -v coverageReport
-      - uses: codecov/codecov-action@v1
-        with:
-          fail_ci_if_error: true
       - name: clean up
         run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
   snapshot:
