@@ -36,7 +36,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        branch: ${{ github.ref }
+        branch: ${{ github.ref }}
     - name: Create a GitHub release
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
