@@ -15,10 +15,8 @@ object Dependencies {
   }
 
   object scalaLang {
-
     val scalaCollectionCompat =
       "org.scala-lang.modules" %% "scala-collection-compat" % Versions.scalaCollectionCompatVersion
-
   }
 
   object scalatest {
