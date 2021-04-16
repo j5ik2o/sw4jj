@@ -8,7 +8,12 @@ on:
     - cron: '0 0 * * *'
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        jdk: [ adopt@1.8, adopt@1.11, adopt@1.14 ]
+    runs-on: ${{ matrix.os }}
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
       JVM_OPTS:  -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
@@ -18,13 +23,18 @@ jobs:
         fetch-depth: 0
     - uses: olafurpg/setup-scala@v10
       with:
-        java-version: "adopt@1.8"
+        java-version: ${{ matrix.jdk }}
     - uses: coursier/cache-action@v5
     - run: sbt -v +compile
     - name: clean up
       run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
   test:
-    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        jdk: [ adopt@1.8, adopt@1.11, adopt@1.14 ]
+    runs-on: ${{ matrix.jdk }}
     needs: build
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
@@ -35,7 +45,7 @@ jobs:
           fetch-depth: 0
       - uses: olafurpg/setup-scala@v10
         with:
-          java-version: "adopt@1.8"
+          java-version: ${{ matrix.jdk }}
       - uses: coursier/cache-action@v5
       - uses: olafurpg/setup-gpg@v3
       - run: sbt -v +test

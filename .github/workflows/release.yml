@@ -18,8 +18,6 @@ jobs:
         with:
           java-version: "adopt@1.8"
       - uses: coursier/cache-action@v5
-      - uses: olafurpg/setup-gpg@v3
-      - run: sbt -v scalafmtCheckAll
       - run: sbt -v +test
       - name: clean up
         run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
