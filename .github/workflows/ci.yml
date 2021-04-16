@@ -11,8 +11,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest ]
         jdk: [ adopt@1.8, adopt@1.11, adopt@1.14 ]
+        scala: [ 2.11.12, 2.11.13, 2.13.5 ]
     runs-on: ${{ matrix.os }}
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
@@ -25,14 +26,14 @@ jobs:
       with:
         java-version: ${{ matrix.jdk }}
     - uses: coursier/cache-action@v5
-    - run: sbt -v +compile
+    - run: sbt -v ++${{ matrix.scala }} compile
     - name: clean up
       run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
   test:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest ]
         jdk: [ adopt@1.8, adopt@1.11, adopt@1.14 ]
     runs-on: ${{ matrix.jdk }}
     needs: build
@@ -48,6 +49,6 @@ jobs:
           java-version: ${{ matrix.jdk }}
       - uses: coursier/cache-action@v5
       - uses: olafurpg/setup-gpg@v3
-      - run: sbt -v +test
+      - run: sbt -v ++${{ matrix.scala }} test
       - name: clean up
         run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
