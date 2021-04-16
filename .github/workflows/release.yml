@@ -5,8 +5,27 @@ on:
     tags:
       - v[1-9]+.[0-9]+.[0-9]+
 jobs:
+  test:
+    runs-on: ubuntu-20.04
+    env:
+      JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
+      JVM_OPTS:  -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+      - uses: olafurpg/setup-scala@v10
+        with:
+          java-version: "adopt@1.8"
+      - uses: coursier/cache-action@v5
+      - uses: olafurpg/setup-gpg@v3
+      - run: sbt -v scalafmtCheckAll
+      - run: sbt -v +test
+      - name: clean up
+        run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
   release:
     runs-on: ubuntu-20.04
+    needs: test
     env:
       JAVA_OPTS: -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
       JVM_OPTS:  -Xms2048M -Xmx2048M -Xss6M -XX:ReservedCodeCacheSize=256M -Dfile.encoding=UTF-8
@@ -19,8 +38,6 @@ jobs:
         java-version: "adopt@1.8"
     - uses: coursier/cache-action@v5
     - uses: olafurpg/setup-gpg@v3
-    - run: sbt -v scalafmtCheckAll
-    - run: sbt -v +test
     - run: sbt -v ci-release
       env:
         PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
