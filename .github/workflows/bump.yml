@@ -36,6 +36,7 @@ jobs:
         git add package.json
         git commit package.json -m 'Bump version in package.json'
     - name: Update CHANGELOG.md
+      run: |
         conventional-changelog -p angular -i CHANGELOG.md -s
         git add CHANGELOG.md || true
         git commit CHANGELOG.md -m 'Update CHANGELOG.md' || true
