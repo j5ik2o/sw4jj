@@ -7,6 +7,7 @@
 
 Simple scala Wrapper For [Java-Jwt](https://github.com/auth0/java-jwt) is sw4jj.
 
+
 ## Installation
 
 Add the following to your sbt build (Scala 2.11.x, 2.12.x, 2.13.x):
