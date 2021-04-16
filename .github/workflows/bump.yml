@@ -6,6 +6,8 @@ on:
 jobs:
   bump-version:
     runs-on: ubuntu-20.04
+    env:
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
     - uses: actions/checkout@v2.3.4
       with:
@@ -48,8 +50,6 @@ jobs:
     - name: Create a GitHub release
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
