@@ -28,21 +28,8 @@ jobs:
     - run: cat ./package.json
     - run: npm version ${{ steps.tag_version.outputs.new_tag }}
     - run: cat ./package.json
-    - name: Conventional Changelog Action
-      id: changelog
-      uses: TriPSs/conventional-changelog-action@v3
-      with:
-        github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        output-file: "CHANGELOG.md"
-        git-user-name: j5ik2o
-        git-user-email: j5ik2o@gmail.com
-        git-message: 'chore(release): {version}'
-        preset: 'angular'
-        tag-prefix: 'v'
-        skip-version-file: true
-        skip-commit: true
-        skip-on-empty: true
-        version-file: 'package.json'
+    - run: npm install -g conventional-changelog-cli
+    - run: conventional-changelog -p angular -i CHANGELOG.md -s
     - name: Create a GitHub release
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
@@ -51,5 +38,5 @@ jobs:
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-        body: ${{ steps.changelog.outputs.clean_changelog }}
+        body: ${{ steps.tag_version.outputs.new_tag }}
 
