@@ -19,15 +19,17 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         default_bump: patch
     - name: Conventional Changelog Action
-      id: changelog
       uses: TriPSs/conventional-changelog-action@v3
       with:
         github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        preset: 'angular'
+        output-file: "CHANGELOG.md"
         git-user-name: j5ik2o
         git-user-email: j5ik2o@gmail.com
+        git-message: 'chore(release): {version}'
+        preset: 'angular'
         tag-prefix: 'v'
-        output-file: "false"
+        skip-on-empty: true
+        version-file: 'package.json'
     - name: Create a GitHub release
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
