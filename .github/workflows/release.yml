@@ -28,4 +28,6 @@ jobs:
         SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
     - name: clean up
-      run: ${GITHUB_WORKSPACE}/.github/clean-up.sh
+      run: |
+        ls -al
+        ./.github/clean-up.sh
