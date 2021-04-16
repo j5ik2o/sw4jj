@@ -1,4 +1,4 @@
-## [0.1.5](https://github.com/j5ik2o/sw4jj/compare/v0.1.0...v0.1.5) (2021-04-16)
+## [1.1.4](https://github.com/j5ik2o/sw4jj/compare/v0.1.0...v1.1.4) (2021-04-16)
 
 
 ### Bug Fixes
