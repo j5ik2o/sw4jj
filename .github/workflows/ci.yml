@@ -24,4 +24,4 @@ jobs:
     - run: sbt -v +compile
     - run: sbt -v +test
     - name: clean up
-      run: ${GITHUB_WORKSPACE}/.github/clean-up.sh
+      run: ${{ github.action_path }}/.github/clean-up.sh
