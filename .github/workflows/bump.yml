@@ -31,7 +31,9 @@ jobs:
     - run: npm install -g conventional-changelog-cli
     - run: conventional-changelog -p angular -i CHANGELOG.md -s
     - run: |
+        git add CHANGELOG.md
         git commit -m 'Update CHANGELOG.md'
+        git push origin
     - name: Create a GitHub release
       uses: actions/create-release@v1
       if: ${{ steps.changelog.outputs.skipped == 'false' }}
