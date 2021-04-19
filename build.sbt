@@ -29,18 +29,22 @@ lazy val baseSettings = Seq(
       "UTF-8",
       "-language:_",
       "-Ydelambdafy:method",
-      "-target:jvm-1.8"
+      "-target:jvm-1.8",
+      "-Yrangepos",
+      "-Ywarn-unused"
     ) ++ crossScalacOptions(scalaVersion.value)),
   libraryDependencies ++= Seq(
       scalatest.scalatest % Test
     ),
+  ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
+  semanticdbEnabled := true,
+  semanticdbVersion := scalafixSemanticdb.revision,
   Test / publishArtifact := false,
   Test / fork := true,
-  Test / parallelExecution := false,
-  ThisBuild / scalafmtOnCompile := true
+  Test / parallelExecution := false
 )
 
-val `sw4jj-root` = (project in file("."))
+val root = (project in file("."))
   .settings(baseSettings)
   .settings(
     name := "sw4jj",
@@ -58,3 +62,7 @@ val `sw4jj-root` = (project in file("."))
       }
     }
   )
+
+// --- Custom commands
+addCommandAlias("lint", ";scalafmtCheck;test:scalafmtCheck;scalafmtSbtCheck;scalafixAll --check")
+addCommandAlias("fmt", ";scalafmtAll;scalafmtSbt")
