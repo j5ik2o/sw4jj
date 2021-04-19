@@ -12,30 +12,30 @@ lazy val baseSettings = Seq(
   homepage := Some(url("https://github.com/j5ik2o/sw4jj")),
   licenses := List("The MIT License" -> url("http://opensource.org/licenses/MIT")),
   developers := List(
-      Developer(
-        id = "j5ik2o",
-        name = "Junichi Kato",
-        email = "j5ik2o@gmail.com",
-        url = url("https://blog.j5ik2o.me")
-      )
-    ),
+    Developer(
+      id = "j5ik2o",
+      name = "Junichi Kato",
+      email = "j5ik2o@gmail.com",
+      url = url("https://blog.j5ik2o.me")
+    )
+  ),
   scalaVersion := Versions.scala211Version,
   crossScalaVersions := Seq(Versions.scala211Version, Versions.scala212Version, Versions.scala213Version),
   scalacOptions ++= (Seq(
-      "-feature",
-      "-deprecation",
-      "-unchecked",
-      "-encoding",
-      "UTF-8",
-      "-language:_",
-      "-Ydelambdafy:method",
-      "-target:jvm-1.8",
-      "-Yrangepos",
-      "-Ywarn-unused"
-    ) ++ crossScalacOptions(scalaVersion.value)),
+    "-feature",
+    "-deprecation",
+    "-unchecked",
+    "-encoding",
+    "UTF-8",
+    "-language:_",
+    "-Ydelambdafy:method",
+    "-target:jvm-1.8",
+    "-Yrangepos",
+    "-Ywarn-unused"
+  ) ++ crossScalacOptions(scalaVersion.value)),
   libraryDependencies ++= Seq(
-      scalatest.scalatest % Test
-    ),
+    scalatest.scalatest % Test
+  ),
   ThisBuild / scalafixScalaBinaryVersion := CrossVersion.binaryScalaVersion(scalaVersion.value),
   semanticdbEnabled := true,
   semanticdbVersion := scalafixSemanticdb.revision,
@@ -49,8 +49,8 @@ val root = (project in file("."))
   .settings(
     name := "sw4jj",
     libraryDependencies ++= Seq(
-        auth0.javaJwt
-      ),
+      auth0.javaJwt
+    ),
     libraryDependencies ++= {
       CrossVersion.partialVersion(scalaVersion.value) match {
         case Some((2L, scalaMajor)) if scalaMajor == 13 =>
