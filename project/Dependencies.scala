@@ -25,7 +25,7 @@ object Dependencies {
   }
 
   object auth0 {
-    val javaJwt = "com.auth0" % "java-jwt" % "3.1.0"
+    val javaJwt = "com.auth0" % "java-jwt" % "3.15.0"
   }
 
 }
