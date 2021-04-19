@@ -14,31 +14,31 @@ object RichClaim {
 
   }
 
-  implicit val intConverter = new Converter[Int] {
+  implicit val intConverter: Converter[Int] = new Converter[Int] {
 
     override def convert(self: Claim) =
       self.asInt()
   }
 
-  implicit val booleanConverter = new Converter[Boolean] {
+  implicit val booleanConverter: Converter[Boolean] = new Converter[Boolean] {
 
     override def convert(self: Claim) =
       self.asBoolean()
   }
 
-  implicit val stringConverter = new Converter[String] {
+  implicit val stringConverter: Converter[String] = new Converter[String] {
 
     override def convert(self: Claim) =
       self.asString()
   }
 
-  implicit val doubleConveter = new Converter[Double] {
+  implicit val doubleConveter: Converter[Double] = new Converter[Double] {
 
     override def convert(self: Claim) =
       self.asDouble()
   }
 
-  implicit val dateConverter = new Converter[Date] {
+  implicit val dateConverter: Converter[Date] = new Converter[Date] {
 
     override def convert(self: Claim) =
       self.asDate()
