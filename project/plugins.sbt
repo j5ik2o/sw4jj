@@ -4,6 +4,6 @@ addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.10")
 
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.9.0")
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.32")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.33")
 
 addDependencyTreePlugin
