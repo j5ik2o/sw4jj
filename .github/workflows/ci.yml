@@ -67,7 +67,7 @@ jobs:
         run: "${GITHUB_WORKSPACE}/.github/clean-up.sh"
   automerge:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.actor == 'j5ik2o-bot[bot]'
     needs: test
     steps:
       - name: Generate token
@@ -87,3 +87,4 @@ jobs:
           MERGE_LABELS: "automerge"
           MERGE_METHOD: "rebase"
           MERGE_FILTER_AUTHOR: "j5ik2o-bot[bot]"
+          MERGE_DELETE_BRANCH: "true"
