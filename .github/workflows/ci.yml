@@ -81,7 +81,7 @@ jobs:
         with:
           repo-token: "${{ steps.generate_token.outputs.token }}"
       - name: automerge
-        uses: pascalgn/automerge-action@v0.15.3
+        uses: pascalgn/automerge-action@v0.15.6
         env:
           GITHUB_TOKEN: "${{ steps.generate_token.outputs.token }}"
           MERGE_LABELS: "automerge"
